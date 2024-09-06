@@ -41,7 +41,8 @@ public class Ball : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.TryGetComponent(out Block block))
-            block.TakeDamage(_damage);
+            if (block.ArmoreLevel <= Force)
+                block.TakeDamage(_damage);
 
         if (collision.gameObject.TryGetComponent<Racket>(out _))
             Hit(collision.collider);
@@ -58,7 +59,7 @@ public class Ball : MonoBehaviour
         _rigidbody.velocity = Vector3.zero;
         _rigidbody.isKinematic = true;
         _collider.enabled = false;
-        _particle.Stop(); 
+        _particle.Stop();
         Force = 1;
         _forceFactor = 1;
     }

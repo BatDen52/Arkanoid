@@ -1,19 +1,16 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameEntryPoint : MonoBehaviour
 {
-    [SerializeField] private GameObject gameOverUI;
+    private const string LEVEL_SCENE_SUBNAME = "Level";
 
-    public void Restart()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        TimeManager.Run();
-    }
+    [SerializeField] private Game _game;
+    [SerializeField] private TMP_Text _levelNumberText;
 
-    public void GameStop()
+    private void Awake()
     {
-        TimeManager.Pause();
-        gameOverUI.SetActive(true);
+        _levelNumberText.text = $"{LEVEL_SCENE_SUBNAME} {SceneManager.GetActiveScene().buildIndex}";
     }
 }

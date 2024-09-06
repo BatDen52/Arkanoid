@@ -11,6 +11,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Button _startButton;
     [SerializeField] private Button _settingsButton;
     [SerializeField] private Button _selectLevelButton;
+    [SerializeField] private Button _exitButton;
 
     [SerializeField] private SettingstWindow _settingstWindow;
     [SerializeField] private SelectLevelWindow _selectLevelWindow;
@@ -24,6 +25,7 @@ public class MainMenu : MonoBehaviour
         _startButton.onClick.AddListener(LoadScene);
         _settingsButton.onClick.AddListener(_settingstWindow.Open);
         _selectLevelButton.onClick.AddListener(_selectLevelWindow.Open);
+        _exitButton.onClick.AddListener(Exit);
     }
 
     private void OnDisable()
@@ -31,6 +33,7 @@ public class MainMenu : MonoBehaviour
         _startButton.onClick.RemoveListener(LoadScene);
         _settingsButton.onClick.RemoveListener(_settingstWindow.Open);
         _selectLevelButton.onClick.RemoveListener(_selectLevelWindow.Open);
+        _exitButton.onClick.RemoveListener(Exit);
     }
 
     private void LoadScene()
@@ -43,5 +46,10 @@ public class MainMenu : MonoBehaviour
         {
             SceneManager.LoadScene(DEFAULT_LEVEL_INDEX);
         }
+    }
+
+    private void Exit()
+    {
+        Application.Quit();
     }
 }

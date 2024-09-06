@@ -1,5 +1,3 @@
-using System;
-using TMPro;
 using UnityEngine;
 
 public class TryCountView : CountView
@@ -9,6 +7,7 @@ public class TryCountView : CountView
     private void OnEnable()
     {
         _data.TryCountChanged += OnCountChanged;
+        OnCountChanged(_data.TryCount);
     }
 
     private void OnDisable()
