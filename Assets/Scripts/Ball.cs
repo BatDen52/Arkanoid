@@ -38,6 +38,11 @@ public class Ball : MonoBehaviour
         _transform = transform;
     }
 
+    private void FixedUpdate()
+    {
+        _rigidbody.velocity = Vector3.ClampMagnitude(_rigidbody.velocity, _speed * _forceFactor);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.TryGetComponent(out Block block))
@@ -70,7 +75,7 @@ public class Ball : MonoBehaviour
         _collider.enabled = true;
         _rigidbody.isKinematic = false;
         _particle.Play();
-        _rigidbody.velocity = Vector2.up * _speed;
+        SetVelocity(Vector3.up);
     }
 
     public void Push(int force = 1)
@@ -85,8 +90,12 @@ public class Ball : MonoBehaviour
 
         float hitFactor = CalculateHitFactor(transform.position, collider.transform.position, collider.bounds.size.x);
         Vector2 newDirection = new Vector2(hitFactor, 1).normalized;
+        SetVelocity(newDirection);
+    }
 
-        _rigidbody.velocity = newDirection * _speed * _forceFactor;
+    private void SetVelocity(Vector2 direction)
+    {
+        _rigidbody.velocity = direction * _speed * _forceFactor;
     }
 
     private float CalculateHitFactor(Vector2 ballPos, Vector2 racketPos, float racketWidth)

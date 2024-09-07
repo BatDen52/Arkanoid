@@ -6,12 +6,19 @@ using UnityEngine;
 public class BallSpawner : MonoBehaviour
 {
     [SerializeField] private Ball _prefab;
-    [SerializeField] private Racket _racket;
-    [SerializeField] private ForceView _forceView;
 
+    private Racket _racket;
+    private ForceView _forceView;
     private List<Ball> _balls = new();
 
+    public event Action<Ball> BallSpawned;
     public event Action BallDestroyed;
+
+    public void Init(Racket racket, ForceView forceView)
+    {
+        _racket = racket;
+        _forceView = forceView;
+    }
 
     public void Spawn()
     {
@@ -31,6 +38,8 @@ public class BallSpawner : MonoBehaviour
         _racket.SetBull(ball);
 
         ball.gameObject.SetActive(true);
+
+        BallSpawned?.Invoke(ball);
     }
 
     private void OnDie(Ball ball)

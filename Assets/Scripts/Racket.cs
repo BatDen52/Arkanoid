@@ -31,19 +31,25 @@ public class Racket : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (TimeManager.IsPaused)
+            return;
+
         _rigidbody.velocity = _inputReader.Direction * Vector2.right * _speed;
 
         if (_inputReader.GetIsPush())
+                Shoot();
+    }
+
+    public void Shoot()
+    {
+        if (_hasBalls)
         {
-            if (_hasBalls)
-            {
-                _balls[0].Shoot();
-                _balls.RemoveAt(0);
-            }
-            else if (_canPush)
-            {
-                StartCoroutine(Push());
-            }
+            _balls[0].Shoot();
+            _balls.RemoveAt(0);
+        }
+        else if (_canPush)
+        {
+            StartCoroutine(Push());
         }
     }
 

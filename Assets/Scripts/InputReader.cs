@@ -10,9 +10,6 @@ public class InputReader : MonoBehaviour, IInputReader
 
     private void Update()
     {
-        if (TimeManager.IsPaused)
-            return;
-
         Direction = Input.GetAxis(ConstantsData.InputData.HORIZONTAL_AXIS);
 
         if (Input.GetKeyDown(_pushKey))

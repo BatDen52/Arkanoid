@@ -37,13 +37,16 @@ public class BlockSpawner : MonoBehaviour
 
             for (int j = 0; j < _rawsData[i].Blocks.Count; j++)
             {
+                if (_rawsData[i].Blocks[j] == null)
+                    continue;
+
                 Block block = Instantiate(_prefab, raw.transform);
 
                 block.Init(_rawsData[i].Blocks[j]);
                 block.Died += OnDied;
 
                 (block.transform as RectTransform).anchoredPosition =
-                    new Vector3(BlockXOffset * j + BlockXStartPosition, -_rawTemplate.sizeDelta.y / 2, 0);
+                    new Vector3(BlockXOffset * j + BlockXStartPosition, _rawTemplate.sizeDelta.y / 2, 0);
 
                 _blocks.Add(block);
             }
@@ -61,54 +64,4 @@ public class BlockSpawner : MonoBehaviour
         if (_blocks.Count == 0)
             AllBlockDestroyed?.Invoke();
     }
-}
-
-[Serializable]
-public class BlockRawInfo
-{
-    private const int MaxRawLength = 11;
-
-    [SerializeField] private List<BlockInfo> _blocks = new();
-
-    public IReadOnlyList<BlockInfo> Blocks => _blocks;
-
-    public void Validate()
-    {
-        while (_blocks.Count > MaxRawLength)
-            _blocks.RemoveAt(_blocks.Count - 1);
-    }
-}
-
-[CreateAssetMenu(menuName = "SO/BlockInfo", order = 0)]
-public class BlockInfo : ScriptableObject
-{
-    [SerializeField] private int _reward;
-    [SerializeField] private int _strength = 1;
-    [SerializeField] private int _armoreLevel = 1;
-    [SerializeField] private List<BlockStage> _stages;
-
-    public int Reward => _reward;
-    public int Strength => _strength;
-    public int ArmoreLevel => _armoreLevel;
-    public IReadOnlyList<BlockStage> Stages => _stages;
-
-
-    private void OnValidate()
-    {
-        while (_stages.Count < _strength)
-            _stages.Add(new BlockStage());
-
-        while (_stages.Count > _strength)
-            _stages.RemoveAt(_stages.Count - 1);
-    }
-}
-
-[Serializable]
-public class BlockStage
-{
-    [SerializeField] private Color _color;
-    [SerializeField] private Sprite _sprite;
-
-    public Color Color => _color;
-    public Sprite Sprite => _sprite;
 }

@@ -2,15 +2,19 @@ using System;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
-    [SerializeField] private int _startTryCount = 3;
-    [SerializeField] private BallSpawner _ballSpawner;
-    [SerializeField] private BlockSpawner _blockSpawner;
-    [SerializeField] private GameMenu _menu;
-    [SerializeField] private TMP_Text _scoreText;
+    private const string LEVEL_SCENE_SUBNAME = "Level";
 
+    [SerializeField] private int _startTryCount = 3;
+
+    private BallSpawner _ballSpawner;
+    private BlockSpawner _blockSpawner;
+    private GameMenu _menu;
+    private TMP_Text _levelNumberText;
+    private TMP_Text _scoreText;
     private int _tryCount;
     private int _score;
 
@@ -42,6 +46,18 @@ public class Game : MonoBehaviour
     {
         _ballSpawner.Spawn();
         TryCountChanged?.Invoke(_tryCount);
+    }
+
+    public void Init(BallSpawner ballSpawner, BlockSpawner blockSpawner, GameMenu menu, 
+        TMP_Text scoreText, TMP_Text levelNumberText)
+    {
+        _ballSpawner = ballSpawner;
+        _blockSpawner = blockSpawner;
+        _menu = menu;
+        _scoreText = scoreText;
+        _levelNumberText = levelNumberText;
+
+        _levelNumberText.text = $"{LEVEL_SCENE_SUBNAME} {SceneManager.GetActiveScene().buildIndex}";
     }
 
     private void OnBallDestroyed()
