@@ -261,7 +261,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 18de7ee8d6fa740fa9f84d641fd4b3e0, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -350,7 +350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _armoreIcon: {fileID: 3315219505314351743}
   _armoreText: {fileID: 7659801834478713302}
-  _dieEffect: {fileID: 0}
+  _dieEffect: {fileID: 2433282508523890284, guid: f844c815219acda448a92fff61655bae, type: 3}
   _damage: 1
 --- !u!1 &6720673444580309747
 GameObject:
