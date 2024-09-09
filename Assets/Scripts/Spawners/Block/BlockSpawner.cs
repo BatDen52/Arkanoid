@@ -17,6 +17,8 @@ public class BlockSpawner : MonoBehaviour
     private List<Block> _blocks = new();
 
     public event Action<int> BlockDestroyed;
+    public event Action<int> AllSpawned;
+    public event Action<int> BlocksCountChanged;
     public event Action AllBlockDestroyed;
 
     private void OnValidate()
@@ -28,7 +30,7 @@ public class BlockSpawner : MonoBehaviour
             raw.Validate();
     }
 
-    private void Awake()
+    private void Start()
     {
         for (int i = 0; i < _rawsData.Count; i++)
         {
@@ -52,6 +54,14 @@ public class BlockSpawner : MonoBehaviour
                     _blocks.Add(block);
             }
         }
+
+        AllSpawned?.Invoke(_blocks.Count);
+    }
+
+    private void OnDestroy()
+    {
+        foreach (Block block in _blocks)
+            block.Died -= OnDied;
     }
 
     public void Init(AudioManager audioManager)
@@ -66,6 +76,8 @@ public class BlockSpawner : MonoBehaviour
         BlockDestroyed?.Invoke(block.Reward);
 
         _blocks.Remove(block);
+
+        BlocksCountChanged?.Invoke(_blocks.Count);
 
         if (_blocks.Count == 0)
             AllBlockDestroyed?.Invoke();
