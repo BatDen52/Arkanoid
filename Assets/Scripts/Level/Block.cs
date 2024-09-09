@@ -9,9 +9,9 @@ public class Block : MonoBehaviour
     [SerializeField] private TMP_Text _armoreText;
     [SerializeField] private ParticleSystem _dieEffect;
 
+    protected AudioManager AudioManager;
     private BlockInfo _info;
-    private AudioManager _audioManager;
-    private int _currentStrength = 1; 
+    private int _currentStrength = 1;
     private SpriteRenderer _spriteRenderer;
 
     public event Action Damaging;
@@ -21,41 +21,61 @@ public class Block : MonoBehaviour
     public int ArmoreLevel => _info.ArmoreLevel;
     public bool IsArmored => _info.ArmoreLevel > 1;
 
-    private void Awake()
+    protected virtual void Awake()
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _spriteRenderer ??= GetComponent<SpriteRenderer>();
     }
 
     public void Init(BlockInfo blockInfo, AudioManager audioManager)
     {
+
         _info = blockInfo;
-        _audioManager = audioManager;
+        AudioManager = audioManager;
         _currentStrength = _info.Strength;
-        _spriteRenderer.sprite = _info.Stages[_info.Stages.Count - _currentStrength].Sprite;
-        _spriteRenderer.color = _info.Stages[_info.Stages.Count - _currentStrength].Color;
-        _armoreIcon.gameObject.SetActive(IsArmored);
-        _armoreText.text = ArmoreLevel.ToString();
+        RefreshView();
+
+        if (_armoreIcon != null)
+            _armoreIcon.gameObject.SetActive(IsArmored);
+
+        if (_armoreText != null)
+            _armoreText.text = ArmoreLevel.ToString();
     }
 
-    public void TakeDamage(int damage)
+    private void RefreshView()
+    {
+        if (_info.Stages.Count < _currentStrength)
+            return;
+
+        _spriteRenderer ??= GetComponent<SpriteRenderer>();
+        _spriteRenderer.sprite = _info.Stages[_info.Stages.Count - _currentStrength].Sprite;
+        _spriteRenderer.color = _info.Stages[_info.Stages.Count - _currentStrength].Color;
+    }
+
+    public virtual void TakeDamage(int damage)
     {
         if (damage <= 0)
             return;
 
-        _currentStrength -= damage;
+        _currentStrength = Mathf.Clamp(_currentStrength - damage, 0, _info.Strength);
 
-        Damaging?.Invoke(); 
-        _audioManager.Play(ConstantsData.AudioData.HitBlock);
+        Damaging?.Invoke();
+        AudioManager.Play(ConstantsData.AudioData.HitBlock);
 
         if (_currentStrength == 0)
         {
-            Instantiate(_dieEffect, transform.position, Quaternion.identity);
+            if (_dieEffect != null)
+                Instantiate(_dieEffect, transform.position, Quaternion.identity);
+
             Destroy(gameObject);
-            Died?.Invoke(this);
+            Die();
             return;
         }
- 
-        _spriteRenderer.color = _info.Stages[_info.Stages.Count - _currentStrength].Color;
-        _spriteRenderer.sprite = _info.Stages[_info.Stages.Count - _currentStrength].Sprite;
+
+        RefreshView();
+    }
+
+    protected virtual void Die()
+    {
+        Died?.Invoke(this);
     }
 }

@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class BlockSpawner : MonoBehaviour
 {
-    private const int MaxRawCount = 10;
+    private const int MaxRawCount = 20;
     private const int RawYOffset = 10;
     private const int BlockXStartPosition = 8;
     private const int BlockXOffset = 18;
 
-    [SerializeField] private Block _prefab;
     [SerializeField] private Transform _rawsContainer;
     [SerializeField] private RectTransform _rawTemplate;
     [SerializeField] private List<BlockRawInfo> _rawsData = new();
@@ -41,7 +40,7 @@ public class BlockSpawner : MonoBehaviour
                 if (_rawsData[i].Blocks[j] == null)
                     continue;
 
-                Block block = Instantiate(_prefab, raw.transform);
+                Block block = Instantiate(_rawsData[i].Blocks[j].Prefab, raw.transform);
 
                 block.Init(_rawsData[i].Blocks[j], _audioManager);
                 block.Died += OnDied;
@@ -49,7 +48,8 @@ public class BlockSpawner : MonoBehaviour
                 (block.transform as RectTransform).anchoredPosition =
                     new Vector3(BlockXOffset * j + BlockXStartPosition, _rawTemplate.sizeDelta.y / 2, 0);
 
-                _blocks.Add(block);
+                if (block is not Enemy)
+                    _blocks.Add(block);
             }
         }
     }

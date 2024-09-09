@@ -16,7 +16,8 @@ public class MenuEntryPoint : MonoBehaviour
     }
 
 #if UNITY_EDITOR
-    private void Reset()
+    [ContextMenu("RefreshSceneList")]
+    private void RefreshSceneList()
     {
         int extentionLength = 6;
         _sceneNames.Clear();

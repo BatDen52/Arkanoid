@@ -18,6 +18,7 @@ public static class ConstantsData
         public const string HitBlock = "hitBlock";
         public const string Push = "push";
         public const string Die = "die";
+        public const string Boom = "boom";
     }
 
     public static class InputData

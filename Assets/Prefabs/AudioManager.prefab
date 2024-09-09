@@ -46,10 +46,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sounds:
   - name: hitRacket
-    clip: {fileID: 8300000, guid: 8bdcc494748c6481386090ea7b99fdfe, type: 3}
+    clip: {fileID: 8300000, guid: 9a972337d7a244fd4ae9e53cdb9c52d5, type: 3}
     volume: 0.712
-    pitch: 0.525
+    pitch: 0.4
   - name: hitBlock
     clip: {fileID: 8300000, guid: 9a972337d7a244fd4ae9e53cdb9c52d5, type: 3}
     volume: 0.712
-    pitch: 0.525
+    pitch: 1
+  - name: push
+    clip: {fileID: 8300000, guid: 8bdcc494748c6481386090ea7b99fdfe, type: 3}
+    volume: 0.712
+    pitch: 0.5
+  - name: die
+    clip: {fileID: 8300000, guid: 8bdcc494748c6481386090ea7b99fdfe, type: 3}
+    volume: 0.712
+    pitch: 0.2
+  - name: boom
+    clip: {fileID: 8300000, guid: 17e8a9f22f3334e43863a3afa89ab717, type: 3}
+    volume: 0.712
+    pitch: 0.5

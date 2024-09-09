@@ -793,7 +793,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.3019608, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1481,6 +1481,9 @@ MonoBehaviour:
   _sceneNames:
   - Level1
   - Level2
+  - Level3
+  - Level4
+  - Level5
   _selectLevelWindow: {fileID: 1505589696}
 --- !u!4 &737522283
 Transform:
@@ -1992,7 +1995,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.1254902, b: 0.53333336, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2727,7 +2730,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.17473024, b: 0.735849, a: 1}
+  m_Color: {r: 0, g: 0.1254902, b: 0.53333336, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2999,7 +3002,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.18431373, g: 0.17254902, b: 0.17254902, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3307,6 +3310,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: BackButton
       objectReference: {fileID: 0}
+    - target: {fileID: 8784765754318587115, guid: 7540f0bb21f85fb4195ff2de7c2f7d7c, type: 3}
+      propertyPath: m_Color.b
+      value: 0.9490196
+      objectReference: {fileID: 0}
+    - target: {fileID: 8784765754318587115, guid: 7540f0bb21f85fb4195ff2de7c2f7d7c, type: 3}
+      propertyPath: m_Color.g
+      value: 0.38431373
+      objectReference: {fileID: 0}
+    - target: {fileID: 8784765754318587115, guid: 7540f0bb21f85fb4195ff2de7c2f7d7c, type: 3}
+      propertyPath: m_Color.r
+      value: 0.14117648
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2109511504581172233, guid: 7540f0bb21f85fb4195ff2de7c2f7d7c, type: 3}
     m_RemovedGameObjects: []
@@ -3366,7 +3381,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.1254902, b: 0.53333336, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4134,6 +4149,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1936975487}
   m_CullTransparentMesh: 1
+--- !u!114 &1942661429 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8914991592084670027, guid: b0b91b57fdf591144a15cf4a7585a9de, type: 3}
+  m_PrefabInstance: {fileID: 989620484}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28a825c81e4ec47e99319051d7ed5efe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1966774868 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7150037849826769572, guid: 7540f0bb21f85fb4195ff2de7c2f7d7c, type: 3}
@@ -4277,7 +4303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f2f935db0abacc41a73a87c3c45da82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioManager: {fileID: 0}
+  _audioManager: {fileID: 1942661429}
   _backButton: {fileID: 1581930266}
   _musicVolume: {fileID: 2086169069}
   _soundVolume: {fileID: 523611876}
@@ -4296,7 +4322,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5018867, g: 0.43844065, b: 0.43844065, a: 1}
+  m_Color: {r: 0.18431373, g: 0.17254902, b: 0.17254902, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4462,7 +4488,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.3019608, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4588,6 +4614,18 @@ PrefabInstance:
     - target: {fileID: 8053136176801823846, guid: 7540f0bb21f85fb4195ff2de7c2f7d7c, type: 3}
       propertyPath: m_Name
       value: BackButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8784765754318587115, guid: 7540f0bb21f85fb4195ff2de7c2f7d7c, type: 3}
+      propertyPath: m_Color.b
+      value: 0.9490196
+      objectReference: {fileID: 0}
+    - target: {fileID: 8784765754318587115, guid: 7540f0bb21f85fb4195ff2de7c2f7d7c, type: 3}
+      propertyPath: m_Color.g
+      value: 0.38431373
+      objectReference: {fileID: 0}
+    - target: {fileID: 8784765754318587115, guid: 7540f0bb21f85fb4195ff2de7c2f7d7c, type: 3}
+      propertyPath: m_Color.r
+      value: 0.14117648
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2109511504581172233, guid: 7540f0bb21f85fb4195ff2de7c2f7d7c, type: 3}

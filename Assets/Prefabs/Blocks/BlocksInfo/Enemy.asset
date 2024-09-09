@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: ArmoredBlock
-  m_EditorClassIdentifier: Assembly-CSharp::BlockInfo
-  _reward: 200
+  m_Script: {fileID: 11500000, guid: 6ef6a426c6601554ca0c63ad09841e46, type: 3}
+  m_Name: Enemy
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 4848653976548703529, guid: 27136a2707d62474fbd48b5a49e033e3, type: 3}
+  _reward: 0
   _strength: 1
-  _armoreLevel: 2
+  _armoreLevel: 9999
   _stages:
   - _color: {r: 1, g: 1, b: 1, a: 1}
-    _sprite: {fileID: 21300000, guid: 18de7ee8d6fa740fa9f84d641fd4b3e0, type: 3}
+    _sprite: {fileID: 21300000, guid: a7a79a0749084304a83dc369606c925f, type: 3}
