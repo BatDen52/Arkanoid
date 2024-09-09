@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using TMPro;
 using Unity.VisualScripting;
@@ -15,6 +16,7 @@ public class Game : MonoBehaviour
     private GameMenu _menu;
     private TMP_Text _levelNumberText;
     private TMP_Text _scoreText;
+    private CameraEffects _cameraEffects;
     private int _tryCount;
     private int _score;
 
@@ -49,13 +51,14 @@ public class Game : MonoBehaviour
     }
 
     public void Init(BallSpawner ballSpawner, BlockSpawner blockSpawner, GameMenu menu, 
-        TMP_Text scoreText, TMP_Text levelNumberText)
+        TMP_Text scoreText, TMP_Text levelNumberText, CameraEffects ballDieEffect)
     {
         _ballSpawner = ballSpawner;
         _blockSpawner = blockSpawner;
         _menu = menu;
         _scoreText = scoreText;
         _levelNumberText = levelNumberText;
+        _cameraEffects = ballDieEffect;
 
         _levelNumberText.text = $"{LEVEL_SCENE_SUBNAME} {SceneManager.GetActiveScene().buildIndex}";
     }
@@ -64,6 +67,7 @@ public class Game : MonoBehaviour
     {
         _tryCount--;
 
+        _cameraEffects.PlayDie();
         TryCountChanged?.Invoke(_tryCount);
 
         if (_tryCount == 0)

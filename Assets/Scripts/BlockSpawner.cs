@@ -14,6 +14,7 @@ public class BlockSpawner : MonoBehaviour
     [SerializeField] private RectTransform _rawTemplate;
     [SerializeField] private List<BlockRawInfo> _rawsData = new();
 
+    private AudioManager _audioManager;
     private List<Block> _blocks = new();
 
     public event Action<int> BlockDestroyed;
@@ -42,7 +43,7 @@ public class BlockSpawner : MonoBehaviour
 
                 Block block = Instantiate(_prefab, raw.transform);
 
-                block.Init(_rawsData[i].Blocks[j]);
+                block.Init(_rawsData[i].Blocks[j], _audioManager);
                 block.Died += OnDied;
 
                 (block.transform as RectTransform).anchoredPosition =
@@ -51,6 +52,11 @@ public class BlockSpawner : MonoBehaviour
                 _blocks.Add(block);
             }
         }
+    }
+
+    public void Init(AudioManager audioManager)
+    {
+        _audioManager = audioManager;
     }
 
     private void OnDied(Block block)

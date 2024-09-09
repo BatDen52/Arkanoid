@@ -10,6 +10,7 @@ public class Ball : MonoBehaviour
     [SerializeField] private int _damage = 1;
 
     private Rigidbody2D _rigidbody;
+    private AudioManager _audioManager;
     private Collider2D _collider;
     private ParticleSystem _particle;
     private Transform _transform;
@@ -56,6 +57,11 @@ public class Ball : MonoBehaviour
             Die();
     }
 
+    public void Init(AudioManager audioManager)
+    {
+        _audioManager = audioManager;
+    }
+
     public void Rest(Racket racket)
     {
         _transform.position = racket.BallPosition;
@@ -74,7 +80,6 @@ public class Ball : MonoBehaviour
         _transform.parent = null;
         _collider.enabled = true;
         _rigidbody.isKinematic = false;
-        _particle.Play();
         SetVelocity(Vector3.up);
     }
 
@@ -82,11 +87,12 @@ public class Ball : MonoBehaviour
     {
         Force += force;
         _forceFactor += MathF.Exp(-Force * FoceProgressionCoefficient);
+        _particle.Play();
     }
 
     private void Hit(Collider2D collider)
     {
-        Hiting?.Invoke();//FindObjectOfType<AudioManager>().Play("hitRacket");
+        Hiting?.Invoke();
 
         float hitFactor = CalculateHitFactor(transform.position, collider.transform.position, collider.bounds.size.x);
         Vector2 newDirection = new Vector2(hitFactor, 1).normalized;
@@ -106,5 +112,6 @@ public class Ball : MonoBehaviour
     private void Die()
     {
         Died?.Invoke(this);
+        _audioManager.Play(ConstantsData.AudioData.Die);
     }
 }

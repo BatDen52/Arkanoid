@@ -1,16 +1,17 @@
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.U2D.Animation;
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class Block : MonoBehaviour
 {
     [SerializeField] private Canvas _armoreIcon;
     [SerializeField] private TMP_Text _armoreText;
+    [SerializeField] private ParticleSystem _dieEffect;
 
     private BlockInfo _info;
-    private int _currentStrength = 1;
+    private AudioManager _audioManager;
+    private int _currentStrength = 1; 
     private SpriteRenderer _spriteRenderer;
 
     public event Action Damaging;
@@ -25,9 +26,10 @@ public class Block : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    public void Init(BlockInfo blockInfo)
+    public void Init(BlockInfo blockInfo, AudioManager audioManager)
     {
         _info = blockInfo;
+        _audioManager = audioManager;
         _currentStrength = _info.Strength;
         _spriteRenderer.sprite = _info.Stages[_info.Stages.Count - _currentStrength].Sprite;
         _spriteRenderer.color = _info.Stages[_info.Stages.Count - _currentStrength].Color;
@@ -42,10 +44,12 @@ public class Block : MonoBehaviour
 
         _currentStrength -= damage;
 
-        Damaging?.Invoke(); //FindObjectOfType<AudioManager>().Play("hitBlock");
+        Damaging?.Invoke(); 
+        _audioManager.Play(ConstantsData.AudioData.HitBlock);
 
         if (_currentStrength == 0)
         {
+            Instantiate(_dieEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
             Died?.Invoke(this);
             return;

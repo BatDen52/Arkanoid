@@ -9,6 +9,7 @@ public class Tutorial : MonoBehaviour
 
     [SerializeField] private GameObject _shootPanel;
     [SerializeField] private GameObject _movePanel;
+    [SerializeField] private GameObject _pushPanel;
 
     private IInputReader _inputReader;
     private BallSpawner _ballSpawner;
@@ -37,7 +38,7 @@ public class Tutorial : MonoBehaviour
         if (_movePanel != null)
             yield return StartCoroutine(ShowMove());
 
-        if (_ballSpawner != null && _shootPanel != null && _racket != null && _ball != null)
+        if (_ballSpawner != null && _pushPanel != null && _racket != null && _ball != null)
             yield return StartCoroutine(ShowPush());
     }
 

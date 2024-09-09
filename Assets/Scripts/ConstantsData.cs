@@ -12,6 +12,14 @@ public static class ConstantsData
         //public const string GROUND_TAG = "Ground";
     }
 
+    public static class AudioData
+    {
+        public const string HitRacket = "hitRacket";
+        public const string HitBlock = "hitBlock";
+        public const string Push = "push";
+        public const string Die = "die";
+    }
+
     public static class InputData
     {
         public const string HORIZONTAL_AXIS = "Horizontal";

@@ -8,16 +8,18 @@ public class BallSpawner : MonoBehaviour
     [SerializeField] private Ball _prefab;
 
     private Racket _racket;
+    private AudioManager _audioManager;
     private ForceView _forceView;
     private List<Ball> _balls = new();
 
     public event Action<Ball> BallSpawned;
     public event Action BallDestroyed;
 
-    public void Init(Racket racket, ForceView forceView)
+    public void Init(Racket racket, ForceView forceView, AudioManager audioManager)
     {
         _racket = racket;
         _forceView = forceView;
+        _audioManager = audioManager;
     }
 
     public void Spawn()
@@ -27,6 +29,7 @@ public class BallSpawner : MonoBehaviour
         if (ball == null)
         {
             ball = Instantiate(_prefab);
+            ball.Init(_audioManager);
             _balls.Add(ball);
         }
 
