@@ -28,6 +28,7 @@ public static class ConstantsData
 
     public static class SavaData
     {
-        public const float DEFAULT_VOLUME = 1;
+        public const float DefaultMusicVolume = 0.05f;
+        public const float DefaultSoundVolume = 1;
     }
 }

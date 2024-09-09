@@ -58,8 +58,8 @@ public static class SaveService
     {
         public bool MusicIsOn = true;
         public bool SoundIsOn = true;
-        public float MusicVolume = ConstantsData.SavaData.DEFAULT_VOLUME;
-        public float SoundVolume = ConstantsData.SavaData.DEFAULT_VOLUME;
+        public float MusicVolume = ConstantsData.SavaData.DefaultMusicVolume;
+        public float SoundVolume = ConstantsData.SavaData.DefaultSoundVolume;
         public List<string> UnlockedLevels = new() { "Level1" };
     }
 }

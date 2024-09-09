@@ -44,6 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28a825c81e4ec47e99319051d7ed5efe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _music:
+    name: music
+    clip: {fileID: 8300000, guid: ad3b049560bf0134ab93f2390702253d, type: 3}
+    volume: 0.712
+    pitch: 1
   _sounds:
   - name: hitRacket
     clip: {fileID: 8300000, guid: 9a972337d7a244fd4ae9e53cdb9c52d5, type: 3}

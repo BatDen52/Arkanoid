@@ -23,4 +23,14 @@ public class Sound
     {
         _source.Play(); 
     }
+
+    public void SetMute(bool isMuted)
+    {
+        _source.mute = isMuted;
+    }
+
+    public void SetVolume(float volume)
+    {
+        _source.volume = volume;
+    }
 }
